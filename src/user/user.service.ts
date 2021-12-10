@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class UserService {
+ 
   constructor(
     @InjectRepository(User)
     private userRepo: Repository<User>,
@@ -23,6 +24,9 @@ export class UserService {
 
   findOne(id: number) {
     return this.userRepo.findOne(id);
+  }
+  findUsername(username) {
+    return this.userRepo.findOne({username:username});
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
