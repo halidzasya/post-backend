@@ -1,4 +1,6 @@
+import { Konsuman } from "src/konsumen/entities/konsuman.entity";
 import { Produk } from "src/produks/entities/produk.entity";
+import { Rekening } from "src/rekening/entities/rekening.entity";
 import { Column, Entity, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
 
 @Entity()
@@ -15,7 +17,7 @@ export class User {
     @Column()
     username : string
 
-    @Column()
+    @Column({select:false})
     password : string
 
     @CreateDateColumn()
@@ -27,5 +29,11 @@ export class User {
     @OneToMany(()=>Produk, prod => prod.id)
     produk : Produk
 
+    @OneToMany(()=>Konsuman, kons => kons.id)
+    konsumen : Konsuman
+
+    @OneToMany(()=>Rekening, rek => rek.id)
+    rekening : Rekening
+    
 }
 

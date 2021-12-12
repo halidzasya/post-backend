@@ -26,7 +26,7 @@ export class UserService {
     return this.userRepo.findOne(id);
   }
   findUsername(username) {
-    return this.userRepo.findOne({username:username});
+    return this.userRepo.findOne({username:username}, {select:['id', 'password']});
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

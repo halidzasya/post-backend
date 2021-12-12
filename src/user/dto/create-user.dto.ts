@@ -29,7 +29,7 @@ export class UserDto {
     @MaxLength(50)
     username : string
 
-    @ApiProperty()
+    @ApiProperty({required:true})
     @IsString()
     @MinLength(8)
     @MaxLength(32)

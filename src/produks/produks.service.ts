@@ -11,13 +11,13 @@ export class ProduksService {
   constructor(
     @InjectRepository(Produk) private produkRepo : Repository<Produk>
     ) {}
-     
+      
   create(createProdukDto: CreateProdukDto) {
-    return 'This action adds a new produk';
+    return this.produkRepo.save(createProdukDto);
   }
 
   findAll() {
-    return this.produkRepo.find();
+    return this.produkRepo.find({relations:['user']});
   }
 
   findOne(id: number) {

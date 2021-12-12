@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraintInterface } from 'class-validator';
-import { getConnection } from 'typeorm';
+import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+import { getConnection, Not } from 'typeorm';
 
-
+@ValidatorConstraint({async:true})
 @Injectable()
 export class UniqueValidator implements ValidatorConstraintInterface{
     async validate(value: any, args:ValidationArguments){
-        let find = {[args.constraints[1]] : args.value}
+        let find = { where : {
+            [args.constraints[1]] : args.value
+        }
+            }
+        if(args.object['id']){
+            find.where['id'] = Not(args.object['id'])
+        }
         let cek = await getConnection().getRepository(args.constraints[0]).findOne(find)
         if(cek) return false
         return true

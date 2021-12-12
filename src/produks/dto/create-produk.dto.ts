@@ -1,5 +1,5 @@
 import { ApiProperty, OmitType, PickType } from "@nestjs/swagger"
-import { IsNumber, IsObject, IsString } from "class-validator"
+import { IsNumber, IsObject, IsOptional, IsString } from "class-validator"
 import { IsExist } from "src/etc/validator/exist-validator"
 import { IsUnique } from "src/etc/validator/unique-validator"
 import { UserDto } from "src/user/dto/create-user.dto"
@@ -31,8 +31,8 @@ export class ProdukDto{
     @IsNumber()
     harga_jual : number
  
-    @ApiProperty()
-    @IsString()
+    @ApiProperty({format:'binary'})
+    @IsOptional()
     foto : string
 
     @IsObject()

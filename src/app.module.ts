@@ -10,6 +10,11 @@ import { UniqueValidator } from './etc/validator/unique-validator';
 import { AuthModule } from './auth/auth.module';
 import { ProduksModule } from './produks/produks.module';
 import { Produk } from './produks/entities/produk.entity';
+import { KonsumenModule } from './konsumen/konsumen.module';
+import { RekeningModule } from './rekening/rekening.module';
+import { Konsuman } from './konsumen/entities/konsuman.entity';
+import { Rekening } from './rekening/entities/rekening.entity';
+import { PenjualanModule } from './penjualan/penjualan.module';
 
 
 @Module({
@@ -25,12 +30,17 @@ import { Produk } from './produks/entities/produk.entity';
       entities : [
         User,
         Produk,
+        Konsuman,
+        Rekening
       ],
       synchronize : true
     }),
     UserModule,
     AuthModule,
     ProduksModule,
+    KonsumenModule,
+    RekeningModule,
+    PenjualanModule,
     
   ],
   controllers: [AppController],
